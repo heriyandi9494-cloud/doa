@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doa Pribadi</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    .doa-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  text-align: justify;
+  color: #333;
+}
+body {
+  background: rgba(235, 56, 56, 0.15);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+              url('https://i.postimg.cc/02p9jYtB/Screenshot-9.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 20px 60px; /* beri space bawah untuk foto */
+  text-align: center;
+  position: relative;
+}
+
+.header h1 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.header .lead {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+/* Foto lingkaran */
+.header-image {
+  position: absolute;
+  bottom: -40px; /* posisikan di bawah header */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px; /* ukuran lingkaran */
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid transparent; /* border putih tipis */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.header-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* menjaga proporsi foto */
+}
+
+
+/* Card */
+.prayer-card {
+  cursor: pointer;
+  border-radius: 18px;
+  background: rgb(246, 243, 243);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.prayer-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top,
+    rgba(226, 13, 13, 0.8),
+    transparent 70%);
+  opacity: 0;
+  transition: opacity .4s;
+}
+
+.prayer-card:hover::before {
+  opacity: 1;
+}
+
+.prayer-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 0 15px rgba(14, 3, 216, 0.9),
+    0 10px 30px rgba(234, 4, 4, 0.15);
+}
+.icon {
+  font-size: 42px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.2));
+}
+
+.prayer-card h6 {
+  font-weight: 600;
+  letter-spacing: .3px;
+  color: #333;
+}
+
+</style>
+</head>
+
+<body>
+<!-- HEADER -->
+<div class="header position-relative text-center">
+  <h1>Doa Pribadi</h1>
+  <p class="lead">Kumpulan doa sebagai pemulihan iman</p>
+
+  <!-- Foto lingkaran -->
+  <div class="header-image">
+    <img src="https://i.postimg.cc/vHG7TsMv/Screenshot-10.jpg" alt="Foto Pribadi">
+  </div>
+</div>
+
+
+<!-- CONTENT -->
+<div class="container my-5">
+
+  <!-- PENCARIAN -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <input type="text" id="searchDoa" class="form-control" placeholder="Cari doa...">
+    </div>
+  </div>
+
+  <!-- MENU DOA -->
+  <div class="container my-5">
+  <!-- WRAPPER SELURUH CARD -->
+  <div class="card-wrapper p-4" style="background:rgb(251, 213, 213); border-radius:15px;">
+    <div class="row g-4">
+    <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Sehari-hari" data-bs-toggle="modal" data-bs-target="#doaHarian">
+        <div class="icon">🙏</div>
+        <h6 class="mt-2">Doa Sehari-hari</h6>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Bapa Kami"data-bs-toggle="modal" data-bs-target="#bapaKami">
+        <div class="icon">✝️</div>
+        <h6 class="mt-2">Doa Bapa Kami</h6>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Malam"data-bs-toggle="modal" data-bs-target="#bapaKami">
+        <div class="icon">🕊️ </div>
+        <h6 class="mt-2">Doa Malam</h6>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Salam Maria" data-bs-toggle="modal" data-bs-target="#salamMaria">
+        <div class="icon">🕊️ </div>
+        <h6 class="mt-2">Salam Maria</h6>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Tobat" data-bs-toggle="modal" data-bs-target="#DoaTobat">
+        <div class="icon">📜</div>
+        <h6 class="mt-2">Doa Tobat</h6>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Syahadat Rasul" data-bs-toggle="modal" data-bs-target="#syahadat">
+        <div class="icon">📜</div>
+        <h6 class="mt-2">Syahadat Rasul</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="MOHON KEKUATAN IMAN" data-bs-toggle="modal" data-bs-target="#MOHONKEKUATANIMAN">
+        <div class="icon">🤍</div>
+        <h6 class="mt-2">MOHON KEKUATAN IMAN</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="MOHON KETAATAN" data-bs-toggle="modal" data-bs-target="#MOHONKETAATAN">
+        <div class="icon">📜</div>
+        <h6 class="mt-2">MOHON KETAATAN</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="DOA MASA ADVEN" data-bs-toggle="modal" data-bs-target="#DOAMASAADVEN">
+        <div class="icon">📜</div>
+        <h6 class="mt-2">DOA MASA ADVEN</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="MOHON KEKUATAN DALAM HUBUNGAN" data-bs-toggle="modal" data-bs-target="#MOHONKEKUATANDALAMHUBUNGAN">
+        <div class="icon">📜</div>
+        <h6 class="mt-2">MOHON KEKUATAN DALAM HUBUNGAN</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="MOHON KETELADANAN" data-bs-toggle="modal" data-bs-target="#MOHONKETELADANAN">
+        <div class="icon">✝️</div>
+        <h6 class="mt-2">MOHON KETELADANAN</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Mohon Iman yang Teguh di Tengah Ujian" data-bs-toggle="modal" data-bs-target="#DoaMohonImanyangTeguhdiTengahUjian">
+        <div class="icon">✝️</div>
+        <h6 class="mt-2">Doa Mohon Iman yang Teguh di Tengah Ujian</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Penyerahan Diri kepada Kehendak Allah" data-bs-toggle="modal" data-bs-target="#DoaPenyerahanDirikepadaKehendakAllah">
+        <div class="icon">🌿</div>
+        <h6 class="mt-2">Doa Penyerahan Diri kepada Kehendak Allah</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Saat Iman Terasa Lemah" data-bs-toggle="modal" data-bs-target="#DoaSaatImanTerasaLemah">
+        <div class="icon">🌱</div>
+        <h6 class="mt-2">Doa Saat Iman Terasa Lemah</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Percaya di Tengah Ketidakpastian" data-bs-toggle="modal" data-bs-target="#DoaPercayadiTengahKetidakpastian">
+        <div class="icon">🌱</div>
+        <h6 class="mt-2">Doa Percaya di Tengah Ketidakpastian</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Tetap Setia Mengikuti Kristus" data-bs-toggle="modal" data-bs-target="#DoaTetapSetiaMengikutiKristus">
+        <div class="icon">🌱</div>
+        <h6 class="mt-2">Doa Tetap Setia Mengikuti Kristus</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Natal: 2025" data-bs-toggle="modal" data-bs-target="#DoaNatal2025">
+        <div class="icon">🎄</div>
+        <h6 class="mt-2">Doa Natal: 2025</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Syukur dan Harapan Tahun Baru" data-bs-toggle="modal" data-bs-target="#DoaSyukurdanHarapanTahunBaru">
+        <div class="icon">🕯️🌞</div>
+        <h6 class="mt-2">Doa Syukur dan Harapan Tahun Baru</h6>
+      </div>
+    </div>
+
+        <div class="col-6 col-md-3">
+      <div class="card prayer-card text-center p-3" data-title="Doa Masa Pertunangan" data-bs-toggle="modal" data-bs-target="#DoaMasaPertunangan">
+        <div class="icon">💕💍</div>
+        <h6 class="mt-2">Doa Masa Pertunangan</h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL DOA ================= -->
+
+<!-- Doa Harian -->
+<div class="modal fade" id="doaHarian">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Sehari-hari</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan yang Maha Pengasih,<br> 
+        sertailah aku hari ini dalam setiap langkahku.<br>  
+        Berilah aku kekuatan, kesabaran, dan kasih<br>
+        agar aku dapat menjadi berkat bagi sesama.<br>
+        Amin.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bapa Kami -->
+<div class="modal fade" id="bapaKami">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Bapa Kami</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Bapa kami yang ada di surga,<br>  
+        dimuliakanlah nama-Mu.<br>  
+        Datanglah Kerajaan-Mu,<br>  
+        jadilah kehendak-Mu di atas bumi seperti di dalam surga.<br>  
+        Berilah kami rezeki pada hari ini<br> 
+        dan ampunilah kesalahan kami,<br>  
+        seperti kami pun mengampuni yang bersalah kepada kami.<br>  
+        Dan janganlah masukkan kami ke dalam pencobaan,<br>  
+        tetapi bebaskanlah kami dari yang jahat.<br> 
+        Amin.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Salam Maria -->
+<div class="modal fade" id="salamMaria">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Salam Maria</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Salam Maria penuh rahmat,<br>  
+        Tuhan sertamu.<br>  
+        Terpujilah engkau di antara wanita<br>  
+        dan terpujilah buah tubuhmu, Yesus.<br>  
+        Santa Maria, Bunda Allah,<br>
+        doakanlah kami yang berdosa ini,<br>  
+        sekarang dan waktu kami mati.<br> 
+        Amin.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Doa Tobat -->
+<div class="modal fade" id="DoaTobat">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Tobat</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan yang Maha Rahim,<br>  
+        Aku menyesal atas segala dosaku.<br> 
+        Sebab patut aku Engkau hukum,<br>  
+        Terutama Sebab aku telah menghina Engkau,<br>  
+        Yang Maha murah dan Maha Baik bagiku<br> 
+        Aku benci akan segala dosaku,<br>  
+        Dan berjanji dengan pertolongan rahmat-Mu.<br>  
+        Ya Tuhan,<br>  
+        Kasihanilah aku orang berdosau ini.<br>
+        Amin.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Doa Malam -->
+<div class="modal fade" id="DoaMalam">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Malam</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Ya Tuhanku dan Allahku,<br>  
+        Aku berlutut di hadapan-Mu dan bersembah sujud kepada-Mu,<br>  
+        Raja Tertinggi.<br>  
+        Aku mengucap syukur kepada-Mu atas segala kemurahan-Mu.<br>  
+        Terlebih atas pemeliharaan_mu pada hari yang lalu.<br>  
+        Datanglah hai Roh Kudus,<br>  
+        Terangilah akal budiku.<br>  
+        Supaya aku mengetahui dosa-dosaku dan berilah aku rahmat-Mu.<br>
+        Supaya aku dapat menyesal sungguh atas dosa-dosaku itu.<br>
+        Amin.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Syahadat Rasul -->
+<div class="modal fade" id="syahadat">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Syahadat Para Rasul</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Aku percaya akan Allah,<br>  
+        Bapa yang Mahakuasa,<br>  
+        Pencipta langit dan bumi;<br>  
+        dan akan Yesus Kristus, Putra-Nya yang tunggal, Tuhan kita.<br>  
+        Yang dikandung dari Roh Kudus,<br>  
+        dilahirkan oleh Perawan Maria,<br>  
+        menderita sengsara dalam pemerintahan Pontius Pilatus,<br>  
+        disalibkan, wafat dan dimakamkan,<br>  
+        yang turun ke tempat penantian,<br>  
+        pada hari ketiga bangkit dari antara orang mati.<br>  
+        Amin.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOHON KEKUATAN IMAN -->
+<div class="modal fade" id="MOHONKEKUATANIMAN">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">MOHON KEKUATAN IMAN</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Bapa yang Mahakasih,<br>
+        kami datang ke hadirat-Mu dengan hati yang rindu akan iman yang sejati.<br>
+        Kami menyadari bahwa iman kami sering diuji<br>
+        oleh keadaan, keraguan, dan kelemahan diri kami sendiri.<br>
+
+        Kuatkanlah iman kami, ya Tuhan,<br>
+        agar kami tetap percaya sekalipun belum melihat.<br>
+        Teguhkan hati kami untuk bersandar penuh kepada-Mu,<br>
+        bukan pada kekuatan kami, melainkan pada kuasa dan kasih-Mu.<br>
+
+        Saat kami lelah dan hampir menyerah,<br>
+        bangkitkan kembali pengharapan kami.<br>
+        Penuhi kami dengan Roh Kudus-Mu,<br>
+        supaya iman kami bertumbuh, berakar, dan berbuah dalam kasih.<br>
+
+        Ajarlah kami hidup setia dalam kebenaran firman-Mu,<br>
+        taat dalam setiap langkah,<br>
+        dan berani bersaksi melalui perbuatan yang memuliakan nama-Mu.<br>
+        Biarlah iman sejati itu menuntun hidup kami<br>
+        hingga kami tetap setia sampai akhir.<br>
+
+        Di dalam nama Tuhan Yesus Kristus,<br>
+        kami berdoa dan berserah.<br>
+        Amin. 🙏✨
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOHON KETAATAN -->
+<div class="modal fade" id="MOHONKETAATAN">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">MOHON KETAATAN</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Ya Tuhan yang setia,<br>
+        kami datang ke hadapan-Mu dengan kerendahan hati.<br>
+        Kami mengakui bahwa sering kali kami lemah<br>
+        dan mudah goyah dalam memegang iman serta pengharapan.<br>
+
+        Tolonglah kami, ya Tuhan,<br>
+        agar kami memiliki hati yang taat dan setia.<br>
+        Ajarlah kami untuk tetap berpegang pada janji-Mu,<br>
+        meskipun jalan yang kami lalui tidak selalu mudah<br>
+        dan penggenapan janji itu terasa belum terlihat.<br>
+
+        Kuatkan iman kami saat kami menunggu,<br>
+        teguhkan langkah kami saat kami ragu,<br>
+        dan penuhilah hati kami dengan pengharapan yang benar.<br>
+        Biarlah Roh-Mu menuntun kami<br>
+        untuk hidup seturut kehendak-Mu setiap hari.<br>
+
+        Tuhan, kami percaya bahwa Engkau tidak pernah ingkar janji.<br>
+        Mampukan kami untuk setia sampai akhir,<br>
+        hidup dalam ketaatan,<br>
+        dan memuliakan nama-Mu melalui hidup kami.<br>
+
+        Di dalam nama Tuhan Yesus Kristus,<br>
+        kami berdoa dan berserah.<br>
+        Amin. 🙏✨
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DOA MASA ADVEN -->
+<div class="modal fade" id="DOAMASAADVEN">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">DOA MASA ADVEN</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan Allah kami,<br>
+        di masa Adven ini kami datang dengan hati yang menanti dan berharap.<br>
+        Seperti umat-Mu menantikan kedatangan Sang Juruselamat,<br>
+        kami pun rindu menyambut kelahiran Yesus dengan hati yang bersih dan rendah.<br>
+
+        Terangilah hati kami, ya Tuhan,<br>
+        agar dalam kesibukan dan hiruk-pikuk dunia,<br>
+        kami tidak kehilangan makna sejati dari Natal.<br>
+        Ajarlah kami untuk menanti dengan sabar,<br>
+        hidup dalam pertobatan,<br>
+        dan setia melakukan kehendak-Mu.<br>
+
+        Bentuklah kami menjadi pribadi yang membawa damai,<br>
+        menyatakan kasih,<br>
+        dan menabur pengharapan bagi sesama.<br>
+        Biarlah terang Kristus yang akan kami rayakan<br>
+        menerangi setiap sudut kehidupan kami.<br>
+
+        Tuhan, sambil menantikan Natal,<br>
+        persiapkanlah hati, pikiran, dan langkah kami,<br>
+        agar kami layak menyambut Sang Immanuel,<br>
+        Allah yang hadir di tengah-tengah kami.<br>
+
+        Di dalam nama Yesus Kristus,<br>
+        Sang Terang Dunia, kami berdoa dan berharap.<br>
+        Amin. 🕯️✨
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOHON KEKUATAN DALAM HUBUNGAN -->
+<div class="modal fade" id="MOHONKEKUATANDALAMHUBUNGAN">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">MOHON KEKUATAN DALAM HUBUNGAN</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan yang penuh kasih,<br>
+        kami bersyukur atas kasih yang Engkau tanamkan dalam hidup kami.<br>
+        Kami menyadari bahwa tanpa Engkau,<br>
+        kasih kami lemah dan mudah goyah.<br>
+
+        Kuatkanlah hati kami untuk saling mengasihi dengan sabar,<br>
+        mengampuni dengan tulus,<br>
+        dan setia dalam setiap keadaan.<br>
+        Ajarlah kami untuk tidak mementingkan diri sendiri,<br>
+        melainkan saling memahami dan menopang satu sama lain.<br>
+
+        Tuhan, ketika lelah, luka, dan perbedaan muncul,<br>
+        ingatkan kami bahwa kasih sejati bersumber dari-Mu.<br>
+        Berilah kami kekuatan untuk tetap bertahan,<br>
+        hikmat untuk berkata dan bertindak dengan kasih,<br>
+        serta kerendahan hati untuk saling menerima.<br>
+
+        Jadikan hubungan kami cerminan kasih Kristus,<br>
+        yang menguatkan, menyembuhkan, dan mempersatukan.<br>
+        Kiranya melalui hubungan ini,<br>
+        nama-Mu dipermuliakan dan damai-Mu nyata di antara kami.<br>
+
+        Di dalam nama Tuhan Yesus Kristus kami berdoa dan berserah.<br>
+        Amin. 🙏
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOHON KETELADANAN  -->
+<div class="modal fade" id="MOHONKETELADANAN">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">MOHON KETELADANAN</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan yang penuh kasih,<br>
+        kami bersyukur atas kasih yang Engkau tanamkan dalam hidup kami.<br>
+        Kami menyadari bahwa tanpa Engkau,<br>
+        kasih kami lemah dan mudah goyah.<br>
+
+        Kuatkanlah hati kami untuk saling mengasihi dengan sabar,<br>
+        mengampuni dengan tulus,<br>
+        dan setia dalam setiap keadaan.<br>
+        Ajarlah kami untuk tidak mementingkan diri sendiri,<br>
+        melainkan saling memahami dan menopang satu sama lain.<br>
+
+        Tuhan, ketika lelah, luka, dan perbedaan muncul,<br>
+        ingatkan kami bahwa kasih sejati bersumber dari-Mu.<br>
+        Berilah kami kekuatan untuk tetap bertahan,<br>
+        hikmat untuk berkata dan bertindak dengan kasih,<br>
+        serta kerendahan hati untuk saling menerima.<br>
+
+        Jadikan hubungan kami cerminan kasih Kristus,<br>
+        yang menguatkan, menyembuhkan, dan mempersatukan.<br>
+        Kiranya melalui hubungan ini,<br>
+        nama-Mu dipermuliakan dan damai-Mu nyata di antara kami.<br>
+
+        Di dalam nama Tuhan Yesus Kristus kami berdoa dan berserah.<br>
+        Amin. 🙏
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Doa Mohon Iman yang Teguh di Tengah Ujian  -->
+<div class="modal fade" id="DoaMohonImanyangTeguhdiTengahUjian">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Mohon Iman yang Teguh di Tengah Ujian  </h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan yang Maha Pengasih,<br>
+        di hadapan-Mu aku datang dengan hati yang lemah dan penuh pergumulan.<br>
+        Engkau mengetahui setiap beban yang kupikul,<br>
+        setiap air mata yang jatuh dalam diam,<br>
+        dan setiap ketakutan yang kadang menggoyahkan imanku.<br>
+
+        Teguhkanlah imanku, ya Tuhan,<br>
+        ketika cobaan membuatku ragu dan hampir menyerah.<br>
+        Ajarku untuk tetap percaya bahwa Engkau selalu bekerja,<br>
+        bahkan saat jalan hidupku terasa gelap dan penuh duri.<br>
+
+        Berilah aku kekuatan untuk berserah sepenuhnya kepada kehendak-Mu,<br>
+        kesabaran untuk menanti waktu-Mu,<br>
+        dan keberanian untuk tetap setia melangkah bersama-Mu.<br>
+        Semoga setiap ujian menjadi jalan pendewasaan iman,<br>
+        bukan alasan untuk menjauh dari kasih-Mu.<br>
+
+        Aku percaya, Tuhan,<br>
+        bahwa Engkau tidak pernah meninggalkanku sendirian.<br>
+        Peganglah tanganku, tuntunlah langkahku,<br>
+        hingga aku mampu melewati semua ini dengan iman yang semakin teguh<br>
+        dan hati yang penuh syukur.<br>
+
+        Amin.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Doa Penyerahan Diri kepada Kehendak Allah -->
+<div class="modal fade" id="DoaPenyerahanDirikepadaKehendakAllah">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Penyerahan Diri kepada Kehendak Allah</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Allah Bapa yang Maha Pengasih,<br>
+        aku datang ke hadirat-Mu dengan hati yang terbuka dan penuh kepercayaan.<br>
+        Dalam keterbatasanku sebagai manusia,<br>
+        sering kali aku ingin memahami segalanya menurut kehendakku sendiri.<br>
+        Namun hari ini, aku memilih untuk menyerahkan diriku sepenuhnya kepada-Mu.<br>
+
+        Bukan kehendakku yang terjadi, ya Tuhan,<br>
+        melainkan kehendak-Mulah yang sempurna dan penuh kasih.<br>
+        Walau terkadang rencana-Mu sulit kupahami,<br>
+        aku percaya bahwa setiap jalan yang Engkau izinkan<br>
+        selalu mengarah pada kebaikan dan keselamatanku.<br>
+
+        Ajarlah aku untuk rendah hati menerima setiap keadaan,<br>
+        kuatkan hatiku saat harus melepaskan keinginan pribadi,<br>
+        dan berilah aku iman yang teguh<br>
+        untuk tetap setia berjalan dalam terang sabda-Mu.<br>
+
+        Serahkanlah hidupku, pikiranku, rencanaku, dan masa depanku<br>
+        ke dalam tangan-Mu yang penuh kasih.<br>
+        Bimbinglah setiap langkahku,<br>
+        agar dalam suka maupun duka,<br>
+        hidupku selalu memuliakan nama-Mu.<br>
+
+        Aku percaya dan berserah sepenuhnya kepada-Mu,<br>
+        kini dan selamanya.<br>
+
+        Amin.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Doa Saat Iman Terasa Lemah -->
+<div class="modal fade" id="DoaSaatImanTerasaLemah">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Saat Iman Terasa Lemah</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan yang penuh kasih,<br>
+        dalam keheningan aku datang kepada-Mu<br>
+        dengan iman yang terasa goyah dan hati yang letih.<br>
+        Ada saat-saat aku sulit percaya,<br>
+        sulit berharap, dan hampir kehilangan arah.<br>
+
+        Namun Tuhan, di tengah kelemahanku,<br>
+        aku percaya bahwa Engkau tetap setia.<br>
+        Saat imanku kecil dan rapuh,<br>
+        jadilah Engkau kekuatanku.<br>
+        Saat aku tak mampu melangkah,<br>
+        gendonglah aku dengan kasih-Mu.<br>
+
+        Teguhkan kembali imanku, ya Tuhan.<br>
+        Nyalakanlah kembali api kepercayaan dalam hatiku,<br>
+        agar aku tidak menyerah pada rasa takut dan putus asa.<br>
+        Bantulah aku untuk tetap berharap,<br>
+        meski belum melihat jawaban dari doa-doaku.<br>
+
+        Aku menyerahkan segala keraguanku kepada-Mu,<br>
+        karena aku tahu Engkau tidak menolak hati yang lemah.<br>
+        Peganglah aku, Tuhan,<br>
+        hingga imanku pulih,<br>
+        dan aku mampu berserah dengan penuh kepercayaan.<br>
+
+        Amin.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Doa Percaya di Tengah Ketidakpastian -->
+<div class="modal fade" id="DoaPercayadiTengahKetidakpastian">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Percaya di Tengah Ketidakpastian</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan yang setia,<br>
+        di tengah hidup yang penuh ketidakpastian,<br>
+        aku datang kepada-Mu membawa rasa takut, cemas, dan kebingungan.<br>
+        Aku tidak selalu tahu ke mana harus melangkah,<br>
+        namun aku percaya Engkau selalu menyertaiku.<br>
+
+        Saat masa depan terasa kabur<br>
+        dan jawabannya belum Engkau nyatakan,<br>
+        ajarilah aku untuk tetap berharap kepada-Mu.<br>
+        Berilah aku hati yang tenang,<br>
+        iman yang teguh,<br>
+        dan keberanian untuk melangkah bersama-Mu.<br>
+
+        Tuhan, aku percaya bahwa rencana-Mu adalah yang terbaik,<br>
+        meski jalannya tidak selalu mudah kupahami.<br>
+        Dalam penantian, ajarlah aku untuk setia.<br>
+        Dalam keheningan, ajarlah aku untuk berserah.<br>
+        Dalam kelemahan, ajarlah aku untuk tetap percaya.<br>
+
+        Kuatkan aku agar tidak dikuasai oleh ketakutan,<br>
+        melainkan dipenuhi oleh pengharapan.<br>
+        Bimbinglah setiap langkah hidupku,<br>
+        dan jadikan Engkau terang di setiap ketidakpastian yang kuhadapi.<br>
+
+        Aku menyerahkan hari ini dan masa depanku ke dalam tangan-Mu,<br>
+        sebab Engkaulah Allah yang setia,<br>
+        kemarin, hari ini, dan selama-lamanya.<br>
+
+        Amin. ✨
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Doa Tetap Setia Mengikuti Kristus -->
+<div class="modal fade" id="DoaTetapSetiaMengikutiKristus">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Tetap Setia Mengikuti Kristus</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan Yesus Kristus,<br>
+        Engkau telah memanggilku untuk mengikuti-Mu,<br>
+        memikul salibku,<br>
+        dan berjalan di jalan kasih dan kebenaran.<br>
+
+        Namun aku sadar,<br>
+        sering kali langkahku goyah,<br>
+        hatiku mudah lelah,<br>
+        dan kesetiaanku diuji oleh kenyamanan, ketakutan, dan godaan dunia.<br>
+
+        Tuhan Yesus,<br>
+        kuatkanlah aku untuk tetap setia mengikuti-Mu,<br>
+        bukan hanya saat jalan terasa terang,<br>
+        tetapi juga ketika jalan penuh penderitaan dan pengorbanan.<br>
+
+        Ajarlah aku untuk mendengarkan suara-Mu<br>
+        di tengah hiruk-pikuk dunia.<br>
+        Bentuklah hatiku agar selalu mencari kehendak-Mu<br>
+        dan berani berkata “ya” kepada panggilan-Mu setiap hari.<br>
+
+        Saat aku jatuh, angkatlah aku.<br>
+        Saat aku ragu, teguhkanlah aku.<br>
+        Saat aku lemah, jadilah kekuatanku.<br>
+
+        Jadikan hidupku kesaksian kasih-Mu,<br>
+        dan tuntun aku untuk setia sampai akhir,<br>
+        hingga aku boleh berjumpa dengan-Mu<br>
+        dalam kemuliaan yang kekal.<br>
+
+        Aku percaya dan berserah sepenuhnya kepada-Mu,<br>
+        Tuhan dan Juruselamatku.<br>
+
+        Amin. 🙏
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Doa Natal: 2025 -->
+<div class="modal fade" id="DoaNatal2025">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Natal: 2025</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan Yesus yang lahir di Betlehem,<br>
+        pada malam kudus-Mu Engkau datang membawa terang dan keselamatan bagi dunia.<br>
+
+        Hari ini, aku mempersembahkan keluargaku kepada-Mu.<br>
+        Selamatkanlah kami dari kejahatan, dari perselisihan, dan dari segala hal yang memisahkan kami.<br>
+        Pulihkanlah kasih dan kesatuan di antara kami,<br>
+        jadikan rumah kami tempat damai, sukacita, dan iman yang teguh.<br>
+
+        Yesus, kami percaya bahwa Engkau datang bukan hanya untuk menebus dunia,<br>
+        tetapi juga untuk menebus hati setiap anggota keluargaku.<br>
+        Teguhkan iman kami, kuatkan kasih kami,<br>
+        dan tuntunlah kami agar hidup kami selalu menjadi saksi kasih-Mu.<br>
+
+        Berkatilah keluarga kami, ya Tuhan,<br>
+        agar kami selalu hidup dalam kasih, saling mengasihi, dan setia mengikuti-Mu.<br>
+        Jadikan setiap perayaan Natal bukan sekadar tradisi,<br>
+        tetapi pengalaman nyata dari kasih dan keselamatan-Mu di tengah keluarga kami.<br>
+
+        Terima kasih, Tuhan, karena Engkau datang untuk menyelamatkan kami.<br>
+        Kami bersyukur dan menyerahkan keluarga kami ke dalam tangan-Mu.<br>
+
+        Amin. ✨
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Doa Syukur dan Harapan Tahun Baru -->
+<div class="modal fade" id="DoaSyukurdanHarapanTahunBaru">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Syukur dan Harapan Tahun Baru</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan yang Maha Penyayang,<br>
+        di penghujung tahun 2025, aku datang kepada-Mu dengan hati penuh syukur.<br>
+        Terima kasih atas setiap berkat, perlindungan, dan penyertaan-Mu sepanjang tahun ini.<br>
+        Atas kasih-Mu yang tidak pernah meninggalkan kami,<br>
+        atas keluarga, sahabat, dan kesempatan yang Engkau berikan, kami bersyukur.<br>
+
+        Tuhan, meski ada tantangan dan kesulitan,<br>
+        Engkau tetap menjadi tempat pengharapan dan kekuatan kami.<br>
+        Ampunilah kekhilafan dan kelemahan kami,<br>
+        dan tuntunlah kami untuk menjadi pribadi yang lebih setia, rendah hati, dan penuh kasih di hadapan-Mu.<br>
+
+        Kami memasuki tahun yang baru dengan iman dan harapan.<br>
+        Kiranya tahun baru ini dipenuhi cinta, kasih, damai sejahtera, dan sukacita-Mu.<br>
+        Berkatilah keluarga, sahabat, dan lingkungan kami,<br>
+        agar setiap langkah kami memancarkan kasih-Mu kepada sesama.<br>
+
+        Tuhan, jadikan tahun baru ini waktu pertumbuhan iman,<br>
+        waktu memperkuat hubungan, dan waktu berbagi kasih-Mu yang tiada batas.<br>
+        Kami menyerahkan seluruh hidup, rencana, dan harapan kami ke dalam tangan-Mu.<br>
+
+        Terpujilah nama-Mu, sekarang dan selama-lamanya.<br>
+
+        Amin. ✨
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Doa Masa Pertunangan -->
+<div class="modal fade" id="DoaMasaPertunangan">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Doa Masa Pertunangan</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body doa-text">
+        <p>
+        Tuhan yang Maha Kasih,<br>
+        Engkau yang mempersatukan dua hati dalam cinta-Mu,<br>
+        aku datang kepada-Mu dalam masa pertunangan ini,<br>
+        memohon kekuatan, kesabaran, dan kesetiaan bagi kami.<br>
+
+        Tuhan, bantulah kami untuk saling mengasihi dengan tulus,<br>
+        menghormati satu sama lain,<br>
+        dan selalu menempatkan kasih-Mu sebagai dasar hubungan kami.<br>
+        Kuatkan iman kami agar setiap keputusan dan langkah<br>
+        selalu selaras dengan kehendak-Mu.<br>
+
+        Ajarlah kami untuk sabar menghadapi perbedaan dan tantangan,<br>
+        untuk tetap setia dalam cinta yang murni,<br>
+        dan untuk selalu saling mendukung dalam iman dan pengharapan.<br>
+
+        Tuhan, jadikan pertunangan ini waktu pembentukan karakter,<br>
+        waktu penguatan kasih,<br>
+        dan waktu persiapan menuju pernikahan yang kudus, penuh berkat, dan setia kepada-Mu.<br>
+
+        Kami menyerahkan hubungan ini ke tangan-Mu,<br>
+        agar kasih kami selalu dipenuhi oleh kasih-Mu yang sempurna.<br>
+
+        Amin. ✨
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const searchInput = document.getElementById('searchDoa');
+const cards = document.querySelectorAll('.prayer-card');
+
+searchInput.addEventListener('keyup', function () {
+  const keyword = this.value.toLowerCase().trim();
+
+  cards.forEach(card => {
+    const title = card.getAttribute('data-title').toLowerCase();
+
+    if (title.includes(keyword)) {
+      card.parentElement.style.display = '';
+    } else {
+      card.parentElement.style.display = 'none';
+    }
+  });
+});
+</script>
+
+</script>
+
+</body>
+</html>
